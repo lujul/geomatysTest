@@ -1,0 +1,158 @@
+<div class="container">
+  <form>
+
+    <div class="row">
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <h3>GEOMATYS TEST-</h3>
+      </div>
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <img *ngIf="showImage" [src]="uploadImageSrc" height="200px" class="img-fluid" alt="Responsive image">
+
+      </div>
+
+
+
+      <!-- Row start -->
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+              <h3 class="panel-title">File upload</h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+
+                <div class="col-lg-12 col-sm-12 col-sx-12">
+                  <div class="input-group">
+                   <!-- <input type="file" id="fileUp" (change)="onFileSelected($event)" class="form-control">  -->
+                   <input type="file" id="fileUp" #coverFilesInput (change)="onChange($event)" class="form-control">
+                    <ng-container *ngIf="uploadSuccess">
+                      Upload Successful of file
+                      <br> The image height is : {{height}}
+                      <br> The image width is : {{width}}
+                      <br>
+                    </ng-container>
+                    <span class="input-group-btn" *ngIf="showUpload">
+                      <button class="btn btn-default" type="button" (click)="onUpload()">Submit!</button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Row end -->
+
+      <!-- Row start -->
+      <div class="row" *ngIf="show">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+              <h3 class="panel-title">Coordonnée X</h3>
+              <p class="help-block" *ngIf="XValidate; else showXErrorMessage">Choisir un nombre positif inferieur à {{height}}</p>
+              <ng-template #showErrorMessage>
+                <p class="help-block " style="color:#a94442;"> !!! valeur invalide -> nombre positif inferieur à {{height}}</p>
+              </ng-template>
+            </div>
+            <div class="panel-body">
+              <div class="input-group">
+                <input type="number" id="fileUp" (change)="changeX($event.target.value)" class="form-control">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+              <h3 class="panel-title">Coordonnée Y</h3>
+              <p class="help-block" *ngIf="YValidate; else showYErrorMessage">Choisir un nombre positif inferieur à {{width}}</p>
+              <ng-template #showYErrorMessage>
+                <p class="help-block " style="color:#a94442;"> !!! valeur invalide -> nombre positif inferieur à {{width}}</p>
+              </ng-template>
+            </div>
+            <div class="panel-body">
+              <div class="input-group">
+                <input type="number" id="fileUp" (change)="changeY($event.target.value)" class="form-control">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Row end -->
+
+
+      <!-- Row start -->
+      <div class="row" *ngIf="show">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+              <h3 class="panel-title">Hauteur Rectangle</h3>
+              <p class="help-block" *ngIf="HValidate; else showHErrorMessage">Choisir un nombre positif inferieur à {{height - xCoord}}</p>
+              <ng-template #showHErrorMessage>
+                <p class="help-block " style="color:#a94442;"> !!! valeur invalide -> nombre positif inferieur à {{height - xCoord}}</p>
+              </ng-template>
+            </div>
+
+            <div class="panel-body">
+
+              <div class="input-group">
+                <input type="number" id="fileUp" (change)="changeRectangleH($event.target.value)" class="form-control">
+
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+              <h3 class="panel-title">Largeur Rectangle</h3>
+              <p class="help-block" *ngIf="WValidate; else showWErrorMessage">Choisir un nombre positif inferieur à {{width - yCoord}}</p>
+              <ng-template #showWErrorMessage>
+                <p class="help-block " style="color:#a94442;"> !!! valeur invalide -> nombre positif inferieur à {{width - xCoord}}</p>
+              </ng-template>
+            </div>
+
+            <div class="panel-body">
+
+              <div class="input-group">
+                <input type="number" id="fileUp" (change)="changeRectangleW($event.target.value)" class="form-control">
+
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+      <!-- Row end -->
+
+      <div class="row" *ngIf="showCROP">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="panel panel-default">
+
+
+
+            <div class="panel-body">
+              <div class="row">
+
+                <div class="col-lg-12 col-sm-12 col-sx-12">
+                  <button type="button" class="btn btn-primary pull-right" (click)="onSubmit()">CROP</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </form>
+</div>
