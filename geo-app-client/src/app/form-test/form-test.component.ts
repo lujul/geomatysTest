@@ -25,13 +25,14 @@ export class FormTestComponent implements OnInit {
   uploadSuccess: boolean = false;
   selectedFile: File = null;
   showUpload: boolean = false;
+  show: boolean = false;
+  showImage: boolean = false;
+  showCROP: boolean = false;
+
   XValidate: boolean = true;
   YValidate: boolean = true;
   HValidate: boolean = true;
   WValidate: boolean = true;
-  show: boolean = false;
-  showImage: boolean = false;
-  showCROP: boolean = false;
   // tslint:disable-next-line:quotemark
   height: number = 0;
   width: number = 0;
@@ -39,7 +40,7 @@ export class FormTestComponent implements OnInit {
   yCoord: number = 0;
   rectangleH: number = 0;
   rectangleW: number = 0;
-  uploadImageSr = "";
+  uploadImageSrc = "";
 
   onFileSelected(e) {
     this.selectedFile = <File>e.target.files[0];
@@ -141,7 +142,7 @@ export class FormTestComponent implements OnInit {
     fd2.append('yCoord', '' + this.yCoord);
     fd2.append('hRect', '' + this.rectangleW);
     fd2.append('wRect', '' + this.rectangleH);
-    this.http.post<UserResponse>('http://localhost:8080/cropAndUploadFile', fd2).subscribe(res => {
+    this.http.post<UserResponse>('http://localhost:5000/cropAndUploadFile', fd2).subscribe(res => {
       console.log(res.fileDownloadUri);
       this.uploadImageSrc = res.fileDownloadUri;
     });
